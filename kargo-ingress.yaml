@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kargo-server-ingress
+  namespace: kargo
+spec:
+  rules:
+    - host: kargo.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kargo-server
+                port:
+                  number: 80

@@ -1,0 +1,17 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: example-runner-deployment
+  namespace: arc-system
+spec:
+  replicas: 1
+  template:
+    spec:
+      organization: khayalghosh
+      image: summerwind/actions-runner-dind
+      env:
+        - name: GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: controller-manager
+              key: github_token
